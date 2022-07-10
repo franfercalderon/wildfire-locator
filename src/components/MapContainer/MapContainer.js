@@ -42,8 +42,14 @@ export default function MapContainer () {
 
 
     return(
+        <>
+            {!loading ?
+                <Map defaultProps={defaultProps} eventInfo={eventInfo}/> :
+                <Loader/>
+            }
+        </>
 
-        <Map defaultProps={defaultProps} eventInfo={eventInfo}/>
+
 
     )
 

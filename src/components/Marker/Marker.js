@@ -1,7 +1,13 @@
 import {Icon} from '@iconify/react'
 import locationMarker from '@iconify/icons-mdi/fire'
-export default function Marker () {
+
+export default function Marker ({onClick}) {
+
    return(
-        <Icon icon={locationMarker}/>
+
+        <div className='marker-container' onClick={onClick}>
+            <Icon icon={locationMarker}/>
+        </div>
+
    ) 
 }
