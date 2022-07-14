@@ -2,7 +2,7 @@ import Map from "../Map/Map"
 import Loader from "../Loader/Loader"
 import { useState, useEffect } from "react"
 
-export default function MapContainer () {
+export default function MapContainer ({currentLocation}) {
 
     //States
     const [loading, setLoading] = useState(false)
@@ -44,7 +44,7 @@ export default function MapContainer () {
     return(
         <>
             {!loading ?
-                <Map defaultProps={defaultProps} eventInfo={eventInfo}/> :
+                <Map defaultProps={defaultProps} currentLocation={currentLocation} eventInfo={eventInfo}/> :
                 <Loader/>
             }
         </>

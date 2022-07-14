@@ -3,7 +3,7 @@ import Marker from '../Marker/Marker'
 import EventDetail from '../EventDetail/EventDetail'
 import { useState } from 'react'
 
-export default function Map ({defaultProps, eventInfo}) {
+export default function Map ({defaultProps, currentLocation, eventInfo}) {
 
     //States
     const [locationInfo, setLocationInfo] = useState(null)
@@ -16,6 +16,11 @@ export default function Map ({defaultProps, eventInfo}) {
 
     }
 
+    const closeEventDetail = () => {
+
+        //Sets locationInfo to null, hence the detail will be no longer rendered.
+        setLocationInfo(null)
+    }
 
     //Maps eventInfo and returns Marker component for each element with 'Wildfire' id.
     const fireLocations = eventInfo.map((event, index) =>{
@@ -30,12 +35,16 @@ export default function Map ({defaultProps, eventInfo}) {
     })
 
     return(
+        
 
         <div className='map'>
+            {/* {console.log(currentLocation)} */}
             <GoogleMapReact
                 bootstrapURLKeys={{key:process.env.REACT_APP_MAPS_API_KEY}}
                 defaultCenter={defaultProps.center}
                 defaultZoom={defaultProps.zoom}
+                center={currentLocation.center}
+                zoom={currentLocation.zoom}
             >
                 {fireLocations}
 
@@ -44,8 +53,9 @@ export default function Map ({defaultProps, eventInfo}) {
             {
                 //If locationInfo is true, renders EventDetail
                 locationInfo && 
-                <EventDetail locationInfo={locationInfo}/>
+                <EventDetail locationInfo={locationInfo} closeEventDetail={closeEventDetail}/>
             }
         </div>
     )
+
 }
