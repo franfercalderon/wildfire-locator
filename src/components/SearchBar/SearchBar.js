@@ -4,14 +4,10 @@ import PlacesAutocomplete, {
     getLatLng,
   } from 'react-places-autocomplete';
 
-export default function SearchBar ({updateLocation}) {
+export default function SearchBar ({setCurrentLocation}) {
 
      //States
      const [address, setAddress] = useState('')
-     const [coordinates, setCoordinates] = useState({
-        lat: null,
-        lng: null
-     })
 
      //Functions
      const handleSelect = async (value) => {
@@ -21,11 +17,12 @@ export default function SearchBar ({updateLocation}) {
          const latLng = await getLatLng(res[0])
 
          //Updates states
-         setCoordinates(latLng)
+         setCurrentLocation({
+            center: latLng,
+            zoom:6
+         })
          setAddress(value)
-
-         //Executes updateLocation function
-         updateLocation(coordinates)
+        
      }
     return(
         <>
@@ -38,7 +35,6 @@ export default function SearchBar ({updateLocation}) {
                     <div>
                         <input {...getInputProps({placeholder:'Ingrese ubicación...' ,className:'search-bar-input'})}/>
                         <div className='suggestion-container'>
-                            {/* {loading?} */}
                             {suggestions.map((suggestion, index)=>{
 
                                 const style = {

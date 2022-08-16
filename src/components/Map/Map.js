@@ -17,7 +17,7 @@ export default function Map ({defaultProps, currentLocation, eventInfo}) {
     }
 
     const closeEventDetail = () => {
-
+        
         //Sets locationInfo to null, hence the detail will be no longer rendered.
         setLocationInfo(null)
     }
@@ -38,7 +38,6 @@ export default function Map ({defaultProps, currentLocation, eventInfo}) {
         
 
         <div className='map'>
-            {/* {console.log(currentLocation)} */}
             <GoogleMapReact
                 bootstrapURLKeys={{key:process.env.REACT_APP_MAPS_API_KEY}}
                 defaultCenter={defaultProps.center}

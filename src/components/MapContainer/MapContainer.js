@@ -48,9 +48,6 @@ export default function MapContainer ({currentLocation}) {
                 <Loader/>
             }
         </>
-
-
-
     )
 
 }

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Header from "./components/Header/Header"
 import MapContainer from "./components/MapContainer/MapContainer";
 
@@ -14,23 +14,9 @@ function App() {
     zoom: 3.5
   })
 
-  //Functions
-  const updateLocation = (center) => {
-
-  
-    setCurrentLocation({
-      center,
-      zoom: 5
-    })
-    console.log(currentLocation)
-  }
-
-  useEffect(()=>{
-
-  })
   return (
     <>
-      <Header updateLocation={updateLocation}/>
+      <Header setCurrentLocation={setCurrentLocation}/>
       <MapContainer currentLocation={currentLocation}/>
     </>
   )
